@@ -17,6 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        
+        
+        RCIM.sharedRCIM().initWithAppKey("x4vkb1qpvdvjk")
+        
+        RCIM.sharedRCIM().connectWithToken("Df/FW9dNZ+XKy97XGBlzSdrzPzZImLTl7njtf7enKQLQUfa2mHKy+B3C5RL3N/rf+2Yh42xdgnIs1aqCmc4ZKw==",
+            success: { (userId) -> Void in
+                print("登陆成功。当前登录的用户ID：\(userId)")
+            }, error: { (status) -> Void in
+                print("登陆的错误码为:\(status.rawValue)")
+            }, tokenIncorrect: {
+                //token过期或者不正确。
+                //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
+                //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
+                print("token错误")
+        })
+
         return true
     }
 
